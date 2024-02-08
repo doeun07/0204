@@ -7,7 +7,8 @@
 header{
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1;
+    background-color: white;
 }
 .container-fluid{
     margin: 0 100px !important;
@@ -53,6 +54,15 @@ header{
 }
 .location_img{
     border-radius: 60px;
+}
+
+.controlBtns {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.controlBtns > button {
+    font: 100px;
 }
 
 
