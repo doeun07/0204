@@ -10,6 +10,18 @@ header{
     z-index: 1;
     background-color: white;
 }
+
+/* .header_manu ul{
+    list-style: none;
+}
+
+.header_manu ul li{
+    float: left;
+}
+
+.header_main_menu{
+    
+} */
 .container-fluid{
     margin: 0 100px !important;
 }
@@ -17,6 +29,13 @@ header{
     width: 100px;
     height: 40px;
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
 
 /*Contents*/
 .d-block{
@@ -64,6 +83,9 @@ header{
 .controlBtns > button {
     font: 100px;
 }
+.now {
+    font-weight: 900 !important;
+}
 
 
 /*contents*/
@@ -108,4 +130,16 @@ header{
     background-color: gray;
     color: white;
     text-align: center;
+}
+
+
+table{
+    margin: 0 auto;
+}
+.reservation_manu {
+    display: flex;
+    flex-direction: row;
+}
+.reservation_main{
+    align-items: center;
 }

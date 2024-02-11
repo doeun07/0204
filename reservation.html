@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기능경기대회 예약페이지</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<!-- Header Start -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li>
+            <a href="./index.html"><img class="logo" src="./logo.jpg" alt=""></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contents.html">캠핑장소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">예약하기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">마이페이지</a>
+          </li>
+        </ul>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">로그인</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">운영관리</a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </nav>
+
+    <div class="reservation_main">
+        <div class="reservation_manu">
+            <div class="reservation_sbmanu" style="color: greenyellow;">
+                <p>● 예약가능</p>
+            </div>
+            <div class="reservation_sbmanu" style="color: red;">
+                <p>▲ 예약중</p>
+            </div>
+            <div class="reservation_sbmanu" style="color: gray;">
+                <p>■ 예약완료</p>
+            </div>
+        </div>
+        <table class="reservation">
+            <tr>
+                <th>자리/날짜</th>
+            </tr>
+            <tr>
+                <th>A01</th>
+            </tr>
+            <tr>
+                <th>A02</th>
+            </tr>
+            <tr>
+                <th>A03</th>
+            </tr>
+            <tr>
+                <th>A04</th>
+            </tr>
+            <tr>
+                <th>A05</th>
+            </tr>
+            <tr>
+                <th>A06</th>
+            </tr>
+            <tr>
+                <th>A07</th>
+            </tr>
+            <tr>
+                <th>T01</th>
+            </tr>
+            <tr>
+                <th>T02</th>
+            </tr>
+            <tr>
+                <th>T03</th>
+            </tr>
+            <tr>
+                <th>T04</th>
+            </tr>
+            <tr>
+                <th>T05</th>
+            </tr>
+            <tr>
+                <th>T06</th>
+            </tr>
+            <tr>
+                <th>T07</th>
+            </tr>
+            <tr>
+                <th>T08</th>
+            </tr>
+            <tr>
+                <th>T09</th>
+            </tr>
+            <tr>
+                <th>T10</th>
+            </tr>
+        </table>
+    </div>
+    
+
+
+
+
+
+
+
+
+    <style>
+        table{
+            margin: 0 auto;
+            text-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        .reservation_manu {
+            display: flex;
+            flex-direction: row;
+            margin-left: 1300px;
+        }
+        .reservation_main{
+            align-items: center;
+        }
+        .reservation_sbmanu{
+            margin: 10px;
+        }
+    </style>
+    <script src="./js/script.js"></script>
+    <script>
+        reservation();
+    </script>
+</body>
+</html>
