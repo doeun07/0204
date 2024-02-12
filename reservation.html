@@ -51,59 +51,61 @@
                 <p>■ 예약완료</p>
             </div>
         </div>
-        <table class="reservation">
-            <tr>
+
+        <!-- table -->
+        <table id="resTable">
+            <tr id="resDateTable">
                 <th>자리/날짜</th>
             </tr>
-            <tr>
+            <tr id="row0">
                 <th>A01</th>
             </tr>
-            <tr>
+            <tr id="row1">
                 <th>A02</th>
             </tr>
-            <tr>
+            <tr id="row2">
                 <th>A03</th>
             </tr>
-            <tr>
+            <tr id="row3">
                 <th>A04</th>
             </tr>
-            <tr>
+            <tr id="row4">
                 <th>A05</th>
             </tr>
-            <tr>
+            <tr id="row5">
                 <th>A06</th>
             </tr>
-            <tr>
+            <tr id="row6">
                 <th>A07</th>
             </tr>
-            <tr>
+            <tr id="row7">
                 <th>T01</th>
             </tr>
-            <tr>
+            <tr id="row8">
                 <th>T02</th>
             </tr>
-            <tr>
+            <tr id="row9">
                 <th>T03</th>
             </tr>
-            <tr>
+            <tr id="row10">
                 <th>T04</th>
             </tr>
-            <tr>
+            <tr id="row11">
                 <th>T05</th>
             </tr>
-            <tr>
+            <tr id="row12">
                 <th>T06</th>
             </tr>
-            <tr>
+            <tr id="row13">
                 <th>T07</th>
             </tr>
-            <tr>
+            <tr id="row14">
                 <th>T08</th>
             </tr>
-            <tr>
+            <tr id="row15">
                 <th>T09</th>
             </tr>
-            <tr>
+            <tr id="row16">
                 <th>T10</th>
             </tr>
         </table>
@@ -122,7 +124,7 @@
             margin: 0 auto;
             text-align: center;
         }
-        table, th, td {
+        table, th, td, tr {
             border: 1px solid black;
         }
         .reservation_manu {
@@ -136,6 +138,14 @@
         .reservation_sbmanu{
             margin: 10px;
         }
+
+        .sat {
+            color: blue;
+        }
+        .sun {
+            color: red;
+        }
+
     </style>
     <script src="./js/script.js"></script>
     <script>
