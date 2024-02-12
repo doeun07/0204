@@ -131,15 +131,3 @@ a{
     color: white;
     text-align: center;
 }
-
-
-table{
-    margin: 0 auto;
-}
-.reservation_manu {
-    display: flex;
-    flex-direction: row;
-}
-.reservation_main{
-    align-items: center;
-}
