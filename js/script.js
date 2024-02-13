@@ -13,7 +13,9 @@ function carouselSlide() {
 }
 
 function pauseCarousel() {
-  const myCarouselElement = document.querySelector("#carouselExampleIndicators");
+  const myCarouselElement = document.querySelector(
+    "#carouselExampleIndicators"
+  );
   $(myCarouselElement).carousel("pause");
 }
 
@@ -77,15 +79,18 @@ function reservation() {
     for (let i = 0; i < 14; i++) {
       for (let k = 0; k < 17; k++) {
         const data = reservation[i][`D+${i}`][k]["status"];
-        const tdElem = document.querySelector(`#row${k} > td:nth-of-type(${i + 1})`);
-        
+        const tdElem = document.querySelector(
+          `#row${k} > td:nth-of-type(${i + 1})`
+        );
+
         if (data == "W") {
           tdElem.innerText = "●";
           tdElem.className = `W D+${i} ${k}`;
+          tdElem.addEventListener("click", yaeyak);
         } else if (data == "R") {
           tdElem.innerText = "▲";
           tdElem.className = `R D+${i} ${k}`;
-        } else{
+        } else {
           tdElem.innerText = "■";
           tdElem.className = `C D+${i} ${k}`;
           // document.querySelector(`#row${i}`).innerHTML += `<td>${reservation[j][`D+${j}`][i]["status"]}</td>`;
@@ -95,9 +100,27 @@ function reservation() {
   }
   // 5초마다 updateReservation 함수를 호출
   setInterval(() => {
-      updateReservation();
-
+    updateReservation();
   }, 5000);
   // 최초 접속 시 updateReservation을 즉시 호출하여 페이지를 렌더링
-  updateReservation(); 
+  updateReservation();
+  //천단위 구분기호
+
 }
+
+//예약 modal 띄우기
+function yaeyak() {
+
+  const rowValue = this.classList[2];
+  let position;
+  if(rowValue <= 6) {
+    position = "A" +  ("0" +(Number(rowValue) + 1)).slice(-2);
+  } else {
+    position = "T" + ("0" + (Number(rowValue) - 6)).slice(-2);
+  }
+  
+  // console.log(position);
+  document.querySelector("#position").innerText = `자리 : ${position}`;
+  $("#exampleModalLive").modal("show");
+}
+
