@@ -32,7 +32,7 @@ function reservation() {
   async function fetchReservation() {
     const getReservationJSON = await fetch("../api/reservation.json");
     const reservationJSON = await getReservationJSON.json();
-    console.log(reservationJSON["reservition"]);
+    // console.log(reservationJSON["reservition"]);
 
     return reservationJSON["reservition"];
   }
@@ -55,11 +55,11 @@ function reservation() {
 
     // 토요일, 일요일 구분 출력
     if (week == 0) {
-      resDateTableElem.innerHTML += `<th class="sun">${year}.${month}.${day}</th>`;
+      resDateTableElem.innerHTML += `<th id="D+${i}" class="sun">${year}.${month}.${day}</th>`;
     } else if (week == 6) {
-      resDateTableElem.innerHTML += `<th class="sat">${year}.${month}.${day}</th>`;
+      resDateTableElem.innerHTML += `<th id="D+${i}" class="sat">${year}.${month}.${day}</th>`;
     } else {
-      resDateTableElem.innerHTML += `<th>${year}.${month}.${day}</th>`;
+      resDateTableElem.innerHTML += `<th id="D+${i}">${year}.${month}.${day}</th>`;
     }
 
     //날짜 Table로 출력
@@ -121,6 +121,26 @@ function yaeyak() {
   
   // console.log(position);
   document.querySelector("#position").innerText = `자리 : ${position}`;
+  $("#exampleModalLive").modal("show");
+
+  //아이디가 this.classList[1]인 Elem의 class 값을 가져와서 week 변수에 저장
+  const week = document.getElementById(`${this.classList[1]}`).className;
+  //주말, 평일 / A, T 영역 구분
+  if(week !=""){
+    if(position.includes("A")) {
+      console.log("A, 주말")
+    } else{
+      console.log("T, 주말")
+    }
+  } else {
+    if(position.includes("A")) {
+      console.log("A, 평일")
+    } else {
+      console.log("T, 평일")
+    }
+  }
+
+  document.querySelector("#position").innerText = `날짜 : ${position}`;
   $("#exampleModalLive").modal("show");
 }
 
