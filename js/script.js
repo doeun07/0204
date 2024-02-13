@@ -126,21 +126,62 @@ function yaeyak() {
   //아이디가 this.classList[1]인 Elem의 class 값을 가져와서 week 변수에 저장
   const week = document.getElementById(`${this.classList[1]}`).className;
   //주말, 평일 / A, T 영역 구분
+  let price;
   if(week !=""){
     if(position.includes("A")) {
-      console.log("A, 주말")
+      price = 30000;
     } else{
-      console.log("T, 주말")
+      price = 20000;
     }
   } else {
     if(position.includes("A")) {
-      console.log("A, 평일")
+      price = 25000;
     } else {
-      console.log("T, 평일")
+      price = 15000;
     }
   }
 
   document.querySelector("#position").innerText = `날짜 : ${position}`;
+  document.querySelector("#price").innerText = `금액 : ${price.toLocaleString()}원`;
+
   $("#exampleModalLive").modal("show");
 }
 
+
+// 휴대폰번호 정규표현식으로 3-4-4 만들기
+const regexPhonNumber = (target) => {
+  target.value = target.value.replace(/[^0-9]/g, "").replace(/^(\d{3})(\d{4})(\d{4})/, `$1-$2-$3`);
+}
+// 인증번호 정규표현식
+const regexVerifyNumber = (target) => {
+  target.value = target.value.replace(/[^0-9]/g, "");
+}
+
+//인증번호 칸 활성화 조건
+function sendVerifyNumber() {
+  if(document.querySelector("#phoneNumber").value.length == 13) {
+    document.querySelector("#phoneVerify").disabled = false;
+  } else {
+    alert("휴대폰 번호를 확인해 주세요");
+  }
+}
+
+//예약 조건
+function reservationSubmit() {
+  const name = document.querySelector("#name").value;
+  const phoneNumber = document.querySelector("#phoneNumber").value;
+  const phoneVerify = document.querySelector("#phoneVerify").value;
+
+  if(!name) {
+    return alert("이름을 확인하여 주시기 바랍니다.")
+  }
+  if(phoneNumber.length != 13) {
+    return alert("전화번호를 확인하여 주시기 바랍니다.")
+  }
+  if(phoneVerify != "1234") {
+    return alert("인증번호를 확인하여 주시기 바랍니다.")
+  }
+
+  $("#exampleModalLive").modal("hide");
+  alert("예약완료")
+}
