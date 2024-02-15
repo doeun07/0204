@@ -140,13 +140,12 @@ function yaeyak() {
       price = 15000;
     }
   }
-
+  //toLocaleString => 금액 천 단위 구분 기호(,)
   document.querySelector("#position").innerText = `날짜 : ${position}`;
   document.querySelector("#price").innerText = `금액 : ${price.toLocaleString()}원`;
 
   $("#exampleModalLive").modal("show");
 }
-
 
 // 휴대폰번호 정규표현식으로 3-4-4 만들기
 const regexPhonNumber = (target) => {
@@ -183,5 +182,12 @@ function reservationSubmit() {
   }
 
   $("#exampleModalLive").modal("hide");
-  alert("예약완료")
+  // alert("예약완료")
+  showToast();
+}
+//Toast JS
+function showToast() {
+  const toastLiveExample = document.getElementById('liveToast')
+  const toast = new bootstrap.Toast(toastLiveExample)
+  toast.show();
 }

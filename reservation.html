@@ -111,13 +111,21 @@
             </tr>
         </table>
     </div>
-    
 
 
 
-
-
-
+    <!-- Footer Start -->
+    <footer>
+        <div class="footer">
+          <p class="h6">개인정보처리방침 | 홈페이지 이용약관</p>
+          <p class="h6">Copyright : Copyright(C) Skills Camping All Rights Reserved.<br>
+            주소 : 충청남도 청양군 대치면 까치내로 123<br>
+            고객센터 전화번호 : 041-987-1234<br>
+            고객센터 운영시간 : 평일 09:00 ~ 18:00, 주말 10:00 ~ 15:00, 점심시간 12:30~13:30<br>
+            하단메뉴 : 개인정보처리방침, 홈페이지 이용약관</p>
+        </div>
+      </footer>
+      <!-- Footer End -->
 
 
     <style>
@@ -131,7 +139,7 @@
         .reservation_manu {
             display: flex;
             flex-direction: row;
-            margin-left: 1300px;
+            margin-left: 1200px;
         }
         .reservation_main{
             align-items: center;
@@ -162,22 +170,22 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLiveLabel">예약하기</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h5 id="position">자리 :</h5>
                 <h5 id="price">금액 :</h5>
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" id="name" class="form-control" placeholder="이름" aria-label="이름" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" id="phoneNumber" class="form-control" placeholder="전화번호" aria-label="전화번호" aria-describedby="button-addon2" oninput="regexPhonNumber(this)" maxlength="13">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sendVerifyNumber()">인증번호 발송</button>
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" id="phoneVerify" class="form-control" placeholder="인증번호" aria-label="인증번호" aria-describedby="basic-addon1" disabled>
+                <div class="input-group mb-3">
+                    <input type="text" id="name" class="form-control" placeholder="이름" aria-label="이름" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" id="phoneNumber" class="form-control" placeholder="전화번호" aria-label="전화번호" aria-describedby="button-addon2" oninput="regexPhonNumber(this)" maxlength="13">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sendVerifyNumber(this)">인증번호 발송</button>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" id="phoneVerify" class="form-control" placeholder="인증번호" aria-label="인증번호" aria-describedby="basic-addon1" maxlength="4" oninput="regexVerifyNumber(this)" disabled>
+                </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -187,6 +195,20 @@
         </div>
       </div>
     <!-- Modal End -->
+
+    <!-- Toast Starts -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto">예약 안내</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            예약 정보가 정상적으로 등록되었습니다.
+            관리자 승인 후 예약이 최종 완료됩니다.
+          </div>
+        </div>
+      </div>
 
     <script src="./jquery/jquery-3.6.0.js"></script>
     <script src="./bootstrap/dist/js/bootstrap.js"></script>
