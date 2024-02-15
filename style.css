@@ -127,3 +127,46 @@ header {
   color: white;
   text-align: center;
 }
+
+table{
+  margin: 0 auto;
+  text-align: center;
+}
+table, th, td, tr {
+  border: 1px solid black !important;
+  padding: 5px;
+}
+
+/* reservation -> css */
+.reservation_manu {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1200px;
+}
+.reservation_main{
+  align-items: center;
+}
+.reservation_sbmanu{
+  margin: 10px;
+}
+
+.sat {
+  color: blue;
+}
+.sun, .R {
+  color: red;
+}
+.W{
+  color: green;
+  cursor: pointer;
+}
+.C{
+  color: gray;
+}
+
+/* mypage -> css */
+.mypage_btn{
+  background-color: rgb(207, 207, 207) !important;
+  border: 0 !important;
+  color: black !important;
+}

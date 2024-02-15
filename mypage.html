@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기능경기대회 마이페이지</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <!-- Header Start -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li>
+            <a href="./index.html"><img class="logo" src="./logo.jpg" alt=""></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contents.html">캠핑장소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./reservation.html">예약하기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link now" href="./mypage.html">마이페이지</a>
+          </li>
+        </ul>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">로그인</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">운영관리</a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </nav>
+    </header>
+<!-- Header End -->
+
+<table>
+    <tr>
+        <th>예약 날짜</th>
+        <th>예약 자리</th>
+        <th>예약 상태</th>
+        <th>예약 취소</th>
+        <th>바비큐 주문하기</th>
+        <th>주문 건수</th>
+        <th>주문 내역 보기</th>
+    </tr>
+    <tr>
+        <td>2024. 02. 15.</td>
+        <td>A01</td>
+        <td>예약 완료</td>
+        <td>
+            <button type="button" class="btn btn-primary mypage_btn">예약 취소</button>
+        </td>
+        <td><button type="button" class="btn btn-primary mypage_btn">바비큐 주문하기</button></td>
+        <td>0</td>
+        <td><button type="button" class="btn btn-primary mypage_btn">주문 내역 보기</button></td>
+    </tr>
+</table>
+
+<!-- Footer Start -->
+<footer>
+    <div class="footer">
+      <p class="h6">개인정보처리방침 | 홈페이지 이용약관</p>
+      <p class="h6">Copyright : Copyright(C) Skills Camping All Rights Reserved.<br>
+        주소 : 충청남도 청양군 대치면 까치내로 123<br>
+        고객센터 전화번호 : 041-987-1234<br>
+        고객센터 운영시간 : 평일 09:00 ~ 18:00, 주말 10:00 ~ 15:00, 점심시간 12:30~13:30<br>
+        하단메뉴 : 개인정보처리방침, 홈페이지 이용약관</p>
+    </div>
+  </footer>
+  <!-- Footer End -->
+</body>
+</html>
