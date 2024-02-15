@@ -90,9 +90,11 @@ function reservation() {
         } else if (data == "R") {
           tdElem.innerText = "▲";
           tdElem.className = `R D+${i} ${k}`;
+          tdElem.addEventListener("click", noyaeyak);
         } else {
           tdElem.innerText = "■";
           tdElem.className = `C D+${i} ${k}`;
+          tdElem.addEventListener("click", noyaeyak);
           // document.querySelector(`#row${i}`).innerHTML += `<td>${reservation[j][`D+${j}`][i]["status"]}</td>`;
         }
       }
@@ -145,6 +147,10 @@ function yaeyak() {
   document.querySelector("#price").innerText = `금액 : ${price.toLocaleString()}원`;
 
   $("#exampleModalLive").modal("show");
+}
+
+function noyaeyak() {
+  alert("예약하실 수 없습니다.")
 }
 
 // 휴대폰번호 정규표현식으로 3-4-4 만들기
