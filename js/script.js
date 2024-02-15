@@ -26,6 +26,7 @@ function playCarousel() {
   $(myCarouselElement).carousel("cycle");
 }
 
+// [예약 페이지 JS]
 //Reservation.html
 function reservation() {
   //JSON 파일에서 데이터 불러오기
@@ -191,9 +192,66 @@ function reservationSubmit() {
   // alert("예약완료")
   showToast();
 }
-//Toast JS
+
+//Toast 띄우기
 function showToast() {
   const toastLiveExample = document.getElementById('liveToast')
   const toast = new bootstrap.Toast(toastLiveExample)
   toast.show();
+}
+
+// [마이페이지 JS]
+const babiqGrillPrice = 10000;
+const pigBabiqPrice = 12000;
+const haesanBabiqPrice = 15000;
+const juicePrice = 3000;
+const sojuPrice = 5000;
+const gajaSetPrice = 4000;
+
+const orderArr = [0, 0, 0, 0, 0, 0];
+let totalPrice = 0;
+let orderCount = 0;
+
+//가격 받아오기
+function setPrice(product) {
+  switch (product.id) {
+    case 'babiqGrill':
+      orderArr[0] = product.value;
+      break;
+    case 'pigBabiq':
+      orderArr[1] = product.value;
+      break;
+    case 'haesanBabiq':
+      orderArr[2] = product.value;
+      break;
+    case 'juice':
+      orderArr[3] = product.value;
+      break;
+    case 'soju':
+      orderArr[4] = product.value;
+      break;
+    case 'gajaSet':
+      orderArr[5] = product.value;
+      break;
+  } 
+
+  const babiqGrillTotal = babiqGrillPrice * orderArr[0];
+  const pigBabiqTotal = pigBabiqPrice * orderArr[1];
+  const haesanBabiqTotal = haesanBabiqPrice * orderArr[2];
+  const juiceTotal = juicePrice * orderArr[3];
+  const sojuTotal = sojuPrice * orderArr[4];
+  const gajaSetTotal = gajaSetPrice * orderArr[5];
+  totalPrice = babiqGrillTotal + pigBabiqTotal + haesanBabiqTotal + juiceTotal + sojuTotal + gajaSetTotal;
+  document.querySelector("#totalPrice").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
+}
+
+//주문 modal 띄우기
+function babiqOrdermodal() {
+  $("#BabiqOrderModal").modal("show");
+}
+//modal 닫고 주문 건수 올리기
+function babiqSubmit() {
+  $("#BabiqOrderModal").modal("hide");
+  orderCount++;
+  document.querySelector("#totalOrder").innerHTML = orderCount;
 }

@@ -170,3 +170,7 @@ table, th, td, tr {
   border: 0 !important;
   color: black !important;
 }
+
+.mypage_btn:hover {
+  background-color: rgb(170, 170, 170) !important;
+}
