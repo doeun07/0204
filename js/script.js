@@ -277,3 +277,16 @@ function babiqOrderCheck() {
   document.querySelector("#gajaSetCheck").innerText = `과자세트 : ${orderArr[5]}세트`;
   document.querySelector("#totalPriceCheck").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
 }
+
+//예약취소
+function reservationCancell(jari) {
+  const trElem = jari.parentElement.parentElement;
+  const position = trElem.getElementsByTagName('td')[1].innerText;
+  const cancell = prompt(`${position} 자리의 예약을 취소하시려면 '예'를 입력해주세요.`);
+  if(cancell == "예") {
+    trElem.innerHTML = ""
+    alert("예약이 취소되었습니다.");
+  } else {
+    alert("예약 취소 실패");
+  }
+}
