@@ -58,9 +58,9 @@
         <td>
             <button type="button" class="btn btn-primary mypage_btn">예약 취소</button>
         </td>
-        <td><button onclick="babiqOrdermodal()" type="button" class="btn btn-primary mypage_btn">바비큐 주문하기</button></td>
+        <td><button onclick="babiqOrderModal()" type="button" class="btn btn-primary mypage_btn">바비큐 주문하기</button></td>
         <td id="totalOrder">0</td>
-        <td><button type="button" class="btn btn-primary mypage_btn">주문 내역 보기</button></td>
+        <td><button onclick="babiqOrderCheck()" type="button" class="btn btn-primary mypage_btn">주문 내역 보기</button></td>
     </tr>
 </table>
 
@@ -121,6 +121,31 @@
     </div>
   </div>
 <!-- Babiq Order Modal End -->
+
+<!-- 주문내역확인 Modal Start -->
+<div class="modal fade" id="babiqOrderCheck" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel">주문 내역 확인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h6 id="babiqCheck">바비큐 그릴 대여(도구 및 숯 등 포함) : 0개</h6>
+            <h6 id="pigBabiqCheck">돼지고기 바비큐 세트 : 0세트</h6>
+            <h6 id="haesanBabiqCheck">해산물 바비큐 세트 : 0세트</h6>
+            <h6 id="juiceCheck">음료 : 0병</h6>
+            <h6 id="sojuCheck">주류 : 0병</h6>
+            <h6 id="gajaSetCheck">과자세트 : 0세트</h6>
+            <h5 id="totalPriceCheck">총 주문 금액 : 0원</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 주문내역확인 Modal End -->
 
     <script src="./jquery/jquery-3.6.0.js"></script>
     <script src="./bootstrap/dist/js/bootstrap.js"></script>

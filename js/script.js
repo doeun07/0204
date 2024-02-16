@@ -246,12 +246,27 @@ function setPrice(product) {
 }
 
 //주문 modal 띄우기
-function babiqOrdermodal() {
+function babiqOrderModal() {
   $("#BabiqOrderModal").modal("show");
 }
 //modal 닫고 주문 건수 올리기
 function babiqSubmit() {
   $("#BabiqOrderModal").modal("hide");
+  alert("주문이 완료되었습니다.");
   orderCount++;
   document.querySelector("#totalOrder").innerHTML = orderCount;
+}
+
+//주문내역보기 Modal
+function babiqOrderCheck() {
+  $("#babiqOrderCheck").modal("show");
+
+  //주문내역보기 갯수 및 가격 띄우기
+  document.querySelector("#babiqCheck").innerText = `바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개`;
+  document.querySelector("#pigBabiqCheck").innerText = `돼지고기 바비큐 세트 : ${orderArr[1]}세트`;
+  document.querySelector("#haesanBabiqCheck").innerText = `해산물 바비큐 세트 : ${orderArr[2]}세트`;
+  document.querySelector("#juiceCheck").innerText = `음료 : ${orderArr[3]}병`;
+  document.querySelector("#sojuCheck").innerText = `주류 : ${orderArr[4]}병`;
+  document.querySelector("#gajaSetCheck").innerText = `과자세트 : ${orderArr[5]}세트`;
+  document.querySelector("#totalPriceCheck").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
 }
