@@ -243,6 +243,13 @@ function setPrice(product) {
   const gajaSetTotal = gajaSetPrice * orderArr[5];
   totalPrice = babiqGrillTotal + pigBabiqTotal + haesanBabiqTotal + juiceTotal + sojuTotal + gajaSetTotal;
   document.querySelector("#totalPrice").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
+  //소계금액
+  document.querySelector("#babiqGrillTotal").innerText = `${babiqGrillTotal.toLocaleString()}원`;
+  document.querySelector("#pigBabiqTotal").innerText = `${pigBabiqTotal.toLocaleString()}원`;
+  document.querySelector("#haesanBabiqTotal").innerText = `${haesanBabiqTotal.toLocaleString()}원`;
+  document.querySelector("#juiceTotal").innerText = `${juiceTotal.toLocaleString()}원`;
+  document.querySelector("#sojuTotal").innerText = `${sojuTotal.toLocaleString()}원`;
+  document.querySelector("#gajaSetTotal").innerText = `${gajaSetTotal.toLocaleString()}원`;
 }
 
 //주문 modal 띄우기
