@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* 자간 간격 줄이기 */
   letter-spacing: -1px;
 }
 
@@ -9,7 +8,7 @@ a{
   text-decoration: none;
 }
 
-/*header Start*/
+/* header */
 header {
   position: sticky;
   top: 0;
@@ -24,12 +23,6 @@ header {
 .header_menu ul li{
     float: left;
 }
-
-.header_main_menu{
-    
-}
-
-
 .container-fluid {
   margin: 0 100px !important;
 }
@@ -37,9 +30,32 @@ header {
   width: 100px;
   height: 40px;
 }
+.now {
+  font-weight: 900 !important;
+}
+  
+/*Footer*/
+.footer {
+  height: 170px;
+  margin-top: 100px;
+  padding: 0 100px;
+  background-color: gray;
+  color: white;
+  text-align: center;
+}
+
+/* table */
+table{
+  margin: 0 auto;
+  text-align: center;
+}
+table, th, td, tr {
+  border: 1px solid black !important;
+  padding: 5px;
+}
 
 
-/*Contents*/
+/*index -> Contents*/
 .d-block {
   width: 100%;
   height: 880px;
@@ -84,9 +100,6 @@ header {
 .controlBtns > button {
   font: 100px;
 }
-.now {
-  font-weight: 900 !important;
-}
 
 /*contents*/
 
@@ -118,26 +131,8 @@ header {
   margin-right: 40px;
 }
 
-/*Footer*/
-.footer {
-  height: 170px;
-  margin-top: 100px;
-  padding: 0 100px;
-  background-color: gray;
-  color: white;
-  text-align: center;
-}
 
-table{
-  margin: 0 auto;
-  text-align: center;
-}
-table, th, td, tr {
-  border: 1px solid black !important;
-  padding: 5px;
-}
-
-/* reservation -> css */
+/* reservation */
 .reservation_manu {
   display: flex;
   flex-direction: row;
