@@ -5,7 +5,7 @@
 }
 
 a{
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* header */
@@ -42,6 +42,10 @@ header {
   background-color: gray;
   color: white;
   text-align: center;
+}
+
+.footer_a {
+  color: white !important;
 }
 
 /* table */
