@@ -173,10 +173,6 @@
           </div>
         </div>
       </div>
-
-    <script src="./jquery/jquery-3.6.0.js"></script>
-    <script src="./bootstrap/dist/js/bootstrap.js"></script>
-    <script src="./js/script.js"></script>
     <script>
         reservation();
     </script>

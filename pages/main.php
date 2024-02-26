@@ -94,12 +94,6 @@
   <p class="h2">오시는 길</p>
   <img class="location_img" src="./location.jpg" alt="">
 </div>
-
-<!-- Script Start-->
-<script src="./jquery/jquery-3.6.0.js"></script> <!-- Bootstrap보다 위에 있어야함. -->
-<script src="./bootstrap/dist/js/bootstrap.js"></script>
-<script src="./js/script.js"></script>
 <script>
   carouselSlide();
 </script>
-<!-- Script End-->

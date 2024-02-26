@@ -1,6 +1,4 @@
 <!-- Footer Start-->
-<link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
 <footer>
     <div class="footer">
       <p class="h6">

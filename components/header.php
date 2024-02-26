@@ -1,6 +1,4 @@
 <!-- Header Start -->
-<link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
