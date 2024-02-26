@@ -1,4 +1,6 @@
 <?php
+include("./config/DBconnect.php");
+session_start();
 $request = $_SERVER["REQUEST_URI"];
 $path = explode('?', $request);
 $path[1] = isset($path[1]) ? $path[1] : null;
@@ -13,6 +15,7 @@ $resource = explode("/", $path[0]);
     <title>Skills Camping</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <script src="./js/script.js"></script>
 </head>
 
 <body>
@@ -40,20 +43,28 @@ $resource = explode("/", $path[0]);
             $page = './pages/' . $resource[1] . '.php';
             $includeheaderAndFooter = true;
             break;
+        case 'logout':
+            $page = './pages/' . $resource[1] . '.php';
+        case 'admin':
+            $page = './pages/' . $resource[1] . '.php';
+            $includeheaderAndFooter = true;
+            break;
+        case 'mypage':
+            $page = './pages/' . $resource[1] . '.php';
+            $includeheaderAndFooter = true;
+            break;
         default:
             $page = "./pages/main.php";
             $includeheaderAndFooter = true;
             break;
     }
     $includeheaderAndFooter ? include("./components/header.php") : null;
-
     include($page);
-    include("./components/footer.php");
+    $includeheaderAndFooter ? include("./components/footer.php") : null;
     ?>
 
 </body>
 <script src="./jquery/jquery-3.6.0.js"></script>
 <script src="./bootstrap/dist/js/bootstrap.js"></script>
-<script src="./js/script.js"></script>
 
 </html>
