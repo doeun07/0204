@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION["user_idx"])) {
+  echo "<script>alert('로그인 후 이용하실 수 있습니다.'); location.href = './login';</script>";
+}
+?>
 <table>
   <tr>
     <th>예약 날짜</th>
