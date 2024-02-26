@@ -18,9 +18,13 @@
         </ul>
         <span>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">로그인</a>
-            </li>
+            <?php
+            if(isset($_SESSION["user_idx"])) {
+            echo '<li class="nav-item"><a class="nav-link" href="./logout">로그아웃</a></li>';
+            } else {
+              echo '<li class="nav-item"><a class="nav-link" href="./login">로그인</a></li>';
+            }
+            ?>
             <li class="nav-item">
               <a class="nav-link" href="#">운영관리</a>
             </li>
