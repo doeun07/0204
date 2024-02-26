@@ -15,27 +15,27 @@ $resource = explode("/", $path[0]);
 
 <body>
     <?php
+    include("./components/header.php");
     $page = "";
     switch ($resource[1]) {
         case '':
             $page = "./pages/main.php";
             break;
         case 'contents':
-            $page = "./pages" . $resource[1] . ".php";
+            $page = "./pages/" . $resource[1] . ".php";
             break;
         case 'reservation':
-            $page = "./pages" . $resource[1] . ".php";
+            $page = "./pages/" . $resource[1] . ".php";
             break;
         case 'mypage':
-            $page = "./pages" . $resource[1] . ".php";
+            $page = "./pages/" . $resource[1] . ".php";
             break;
         default:
             $page = "./pages/main.php";
             break;
     }
     include($page);
-
-
+    include("./components/footer.php");
     ?>
 
 </body>
