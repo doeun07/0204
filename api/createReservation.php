@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_4 = $pdo->prepare($sql_4);
         $stmt_4->bindParam(":position", $position);
         $stmt_4->bindParam(":price", $price);
-        $stmt_4->bindParam(":user_idx", $user_idx);
+        $stmt_4->bindParam(":user_idx", $user["user_idx"]);
         $stmt_4->bindParam(":date", $date);
         $stmt_4->execute();
 
