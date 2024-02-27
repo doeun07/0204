@@ -12,9 +12,9 @@
 
 <body>
     <?php
-    $includeheaderAndFooter ? include("./components/header.php") : null;
+    $includeHeaderAndFooter ? include("./components/header.php") : null;
     include($page);
-    $includeheaderAndFooter ? include("./components/footer.php") : null;
+    $includeHeaderAndFooter ? include("./components/footer.php") : null;
     ?>
 </body>
 <script src="./jquery/jquery-3.6.0.js"></script>
