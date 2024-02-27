@@ -275,7 +275,10 @@ function setPrice(product) {
 }
 
 //주문 modal 띄우기
-function babiqOrderModal() {
+function babiqOrderModal(elem) {
+  const positionElem = document.querySelector("#BabiqOrderModal #position");
+  const position = elem.parentElement.parentElement.id;
+  positionElem.innerText = `자리 : ${position}`;
   $("#BabiqOrderModal").modal("show");
 }
 //modal 닫고 주문 건수 올리기

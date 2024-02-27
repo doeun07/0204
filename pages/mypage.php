@@ -3,6 +3,34 @@ if(!isset($_SESSION["user_idx"])) {
   echo "<script>alert('로그인 후 이용하실 수 있습니다.'); location.href = './login';</script>";
 }
 ?>
+<?php
+//예약 정보 db에서 불러오기
+$sql = "SELECT * FROM reservations WHERE user_idx = :user_idx ORDER BY CAST(SUBSTRING(date, LOCATE('+', date) + 1) AS UNSIGNED) ASC";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(":user_idx", $_SESSION["user_idx"]);
+$stmt->execute();
+$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//날짜 출력 함수
+function getYYYYMMDD($dDay) {
+  $explodeDDay = explode("+", $dDay);
+  $explodeDDay = $explodeDDay[1];
+  $date = date(DATE_ATOM, mktime(0,0,0, date("m"), date("d") + $explodeDDay, date("Y")));
+  $date = explode("T", $date);
+  return $date[0];
+}
+// 예약 상태 구분
+function getYaeyakStatus($status) {
+  if ($status == "W") {
+    return "예약대기";
+  } else if ($status == "R") {
+    return "예약중";
+  } else {
+    return "예약완료";
+  }
+}
+
+?>
 <table>
   <tr>
     <th>예약 날짜</th>
@@ -13,7 +41,7 @@ if(!isset($_SESSION["user_idx"])) {
     <th>주문 건수</th>
     <th>주문 내역 보기</th>
   </tr>
-  <tr>
+  <!-- <tr>
     <td>2024. 02. 15.</td>
     <td>A01</td>
     <td>예약 완료</td>
@@ -21,7 +49,28 @@ if(!isset($_SESSION["user_idx"])) {
     <td><button onclick="babiqOrderModal()" type="button" class="btn btn-primary mypage_btn">바비큐 주문하기</button></td>
     <td id="totalOrder">0</td>
     <td><button onclick="babiqOrderCheck()" type="button" class="btn btn-primary mypage_btn">주문 내역 보기</button></td>
-  </tr>
+  </tr> -->
+  <?php
+  if ($reservations) {
+    foreach ($reservations as $reservation) { 
+      $divinnertext = ""; 
+      $divinnertext .= "<tr id='" . $reservation["position"] ."'>"; 
+      $divinnertext .= "<td>". getYYYYMMDD($reservation["date"]) ."</td>"; 
+      $divinnertext .= "<td> ". $reservation["position"] ."</td>"; 
+      $divinnertext .= "<td>". getYaeyakStatus($reservation["status"]) ."</td>"; 
+      $divinnertext .= "<td><button onclick='reservationCancell(this)' class='btn btn-primary mypage_btn'>예약 취소</button></td>"; 
+      $divinnertext .= "<td><button onclick='babiqOrderModal(this)' class='btn btn-primary mypage_btn'>바비큐 주문하기</button></td>"; 
+      $divinnertext .= "<td id='totalOrder'></td>"; 
+      $divinnertext .= "<td><button onclick='babiqOrderCheck(this)' class='btn btn-primary mypage_btn'>주문 내역 보기</button></td>"; 
+      $divinnertext .= "</tr>";
+
+      echo $divinnertext;
+
+    }
+  }
+  
+
+  ?>
 </table>
 
 <!-- Babiq Order Modal Start -->
@@ -34,7 +83,7 @@ if(!isset($_SESSION["user_idx"])) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5>자리 : A01</h5>
+        <h5 id="position">자리 : A01</h5>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">바비큐 그릴 대여(도구 및 숯 등 포함) (10,000원/개)</span>
           <input id="babiqGrill" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" max="1"
