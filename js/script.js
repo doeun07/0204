@@ -31,11 +31,11 @@ function playCarousel() {
 function reservation() {
   //JSON 파일에서 데이터 불러오기
   async function fetchReservation() {
-    const getReservationJSON = await fetch("../api/reservation.json");
+    const getReservationJSON = await fetch("http://localhost/api/reservation");
     const reservationJSON = await getReservationJSON.json();
     // console.log(reservationJSON["reservition"]);
 
-    return reservationJSON["reservition"];
+    return reservationJSON;
   }
   //test code
   // const reservationData = fetchReservation();
@@ -77,12 +77,12 @@ function reservation() {
 
     // console.log(reservation[0]["D+0"][0]["status"]);
     // 예약 현황 구분하여 아이콘으로 표에 나타내기
+    let count = 0;
     for (let i = 0; i < 14; i++) {
       for (let k = 0; k < 17; k++) {
-        const data = reservation[i][`D+${i}`][k]["status"];
-        const tdElem = document.querySelector(
-          `#row${k} > td:nth-of-type(${i + 1})`
-        );
+        const data = reservation[count]["status"];
+        const tdElem = document.querySelector(`#row${k} > td:nth-of-type(${i + 1})`);
+        console.log(data);
 
         if (data == "W") {
           tdElem.innerText = "●";
@@ -98,6 +98,7 @@ function reservation() {
           tdElem.addEventListener("click", noyaeyak);
           // document.querySelector(`#row${i}`).innerHTML += `<td>${reservation[j][`D+${j}`][i]["status"]}</td>`;
         }
+        count++;
       }
     }
   }
