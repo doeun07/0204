@@ -53,6 +53,10 @@ if ($resource[1] == "api") {
             $page = './api/' . $resource[2] . '.php';
             $includeHeaderAndFooter = false;
             break;
+        case 'createReservation':
+            $page = './api/' . $resource[2] . '.php';
+            $includeHeaderAndFooter = false;
+            break;
         default:
             echo "잘못된 접근입니다.";
             break;
