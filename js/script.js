@@ -112,11 +112,16 @@ function reservation() {
 
 }
 
+let dDay = "";
+let position ="";
+let price = "";
+
 //예약 modal 띄우기
 function yaeyak() {
+  //디데이 설정
+  dDay = this.classList[1];
 
   const rowValue = this.classList[2];
-  let position;
   if(rowValue <= 6) {
     position = "A" +  ("0" +(Number(rowValue) + 1)).slice(-2);
   } else {
@@ -130,7 +135,6 @@ function yaeyak() {
   //아이디가 this.classList[1]인 Elem의 class 값을 가져와서 week 변수에 저장
   const week = document.getElementById(`${this.classList[1]}`).className;
   //주말, 평일 / A, T 영역 구분
-  let price;
   if(week !=""){
     if(position.includes("A")) {
       price = 30000;
@@ -188,10 +192,27 @@ function reservationSubmit() {
   if(phoneVerify != "1234") {
     return alert("인증번호를 확인하여 주시기 바랍니다.")
   }
+  // 관리자 번호 사용 불가
+  if(phoneNumber == "000-0000-0000") {
+    return alert("이 전화번호를 사용하실 수 없습니다.")
+  }
 
   $("#exampleModalLive").modal("hide");
-  // alert("예약완료")
-  showToast();
+  // 예약 정보 넘기기
+  $.post("./api/createReservation", {
+    "username" : name,
+    "phone_num" : phoneNumber,
+    "position": position,
+    "date": dDay,
+    "price": price
+    // 중복 예약 불가
+  }).done(function(data){
+    if(data == "정상적으로 등록되었습니다.") {
+      showToast();
+    } else {
+      alert(data);
+    }
+  });
 }
 
 //Toast 띄우기
