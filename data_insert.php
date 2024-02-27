@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ALTER TABLE reservations AUTO_INCREMENT = 1;
 
     try {
-        $sql = "INSERT INTO reservations (position, data, status) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO reservations (position, date, status) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$loc_num, $dDay, $status]);
         echo "저장이 완료 되었다.";
@@ -42,6 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return reservationJSON["reservition"];
             }
 
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms))
+            }
+
             async function updateReservation() {
                 const reservation = await fetchReservation();
 
@@ -51,13 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         const dDay = `D+${i}`;
                         const loc_num = reservation[i][dDay][k]["loc_num"];
                         const status = reservation[i][dDay][k]["status"];
-                        const data = (dDay, loc_num, status);
                         console.log(dDay, loc_num, status);
                         $.post("./data_insert.php", {
                             "dDay" : dDay,
                             "loc_num": loc_num,
                             "status": status
-                        })
+                        });
+                        await sleep(50);
                     }
                 }
             }
