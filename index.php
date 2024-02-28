@@ -14,32 +14,17 @@ switch ($resource[1]) {
         $includeHeaderAndFooter = true;
         break;
     case 'contents':
-        $page = "./pages/" . $resource[1] . ".php";
-        $includeHeaderAndFooter = true;
-        break;
-    case 'reservation':
-        $page = "./pages/" . $resource[1] . ".php";
-        $includeHeaderAndFooter = true;
-        break;
+    case 'admin':
     case 'mypage':
-        $page = "./pages/" . $resource[1] . ".php";
-        $includeHeaderAndFooter = true;
-        break;
+    case 'reservation':
+    case 'mypage':
     case 'login':
-        $page = './pages/' . $resource[1] . '.php';
+        $page = "./pages/" . $resource[1] . ".php";
         $includeHeaderAndFooter = true;
         break;
     case 'logout':
         $page = './pages/' . $resource[1] . '.php';
         $includeHeaderAndFooter = false;
-        break;
-    case 'admin':
-        $page = './pages/' . $resource[1] . '.php';
-        $includeHeaderAndFooter = true;
-        break;
-    case 'mypage':
-        $page = './pages/' . $resource[1] . '.php';
-        $includeHeaderAndFooter = true;
         break;
     default:
         $page = "./pages/main.php";
@@ -50,13 +35,7 @@ switch ($resource[1]) {
 if ($resource[1] == "api") {
     switch ($resource[2]) {
         case 'reservation':
-            $page = './api/' . $resource[2] . '.php';
-            $includeHeaderAndFooter = false;
-            break;
         case 'createReservation':
-            $page = './api/' . $resource[2] . '.php';
-            $includeHeaderAndFooter = false;
-            break;
         case 'createBabiq':
             $page = './api/' . $resource[2] . '.php';
             $includeHeaderAndFooter = false;
