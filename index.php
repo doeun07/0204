@@ -36,7 +36,7 @@ if ($resource[1] == "api") {
     switch ($resource[2]) {
         case 'reservation':
         case 'createReservation':
-        case 'createBabiq':
+        case 'babiq':
             $page = './api/' . $resource[2] . '.php';
             $includeHeaderAndFooter = false;
             break;

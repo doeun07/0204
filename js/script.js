@@ -230,32 +230,31 @@ const juicePrice = 3000;
 const sojuPrice = 5000;
 const gajaSetPrice = 4000;
 
-const orderArr = [0, 0, 0, 0, 0, 0];
-let totalPrice = 0;
-let orderCount = 0;
+// const orderArr = [0, 0, 0, 0, 0, 0];
+// let totalPrice = 0;
 
 //가격 받아오기
-function setPrice(product) {
-  switch (product.id) {
-    case 'babiqGrill':
-      orderArr[0] = product.value;
-      break;
-    case 'pigBabiq':
-      orderArr[1] = product.value;
-      break;
-    case 'haesanBabiq':
-      orderArr[2] = product.value;
-      break;
-    case 'juice':
-      orderArr[3] = product.value;
-      break;
-    case 'soju':
-      orderArr[4] = product.value;
-      break;
-    case 'gajaSet':
-      orderArr[5] = product.value;
-      break;
-  } 
+function setPrice(orderArr) {
+  // switch (product.id) {
+  //   case 'babiqGrill':
+  //     orderArr[0] = product.value;
+  //     break;
+  //   case 'pigBabiq':
+  //     orderArr[1] = product.value;
+  //     break;
+  //   case 'haesanBabiq':
+  //     orderArr[2] = product.value;
+  //     break;
+  //   case 'juice':
+  //     orderArr[3] = product.value;
+  //     break;
+  //   case 'soju':
+  //     orderArr[4] = product.value;
+  //     break;
+  //   case 'gajaSet':
+  //     orderArr[5] = product.value;
+  //     break;
+  // } 
 
   const babiqGrillTotal = babiqGrillPrice * orderArr[0];
   const pigBabiqTotal = pigBabiqPrice * orderArr[1];
@@ -263,44 +262,97 @@ function setPrice(product) {
   const juiceTotal = juicePrice * orderArr[3];
   const sojuTotal = sojuPrice * orderArr[4];
   const gajaSetTotal = gajaSetPrice * orderArr[5];
-  totalPrice = babiqGrillTotal + pigBabiqTotal + haesanBabiqTotal + juiceTotal + sojuTotal + gajaSetTotal;
-  document.querySelector("#totalPrice").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
+  const totalPrice = babiqGrillTotal + pigBabiqTotal + haesanBabiqTotal + juiceTotal + sojuTotal + gajaSetTotal;
+  return [babiqGrillTotal, pigBabiqTotal, haesanBabiqTotal, juiceTotal, sojuTotal, gajaSetTotal, totalPrice];
+  // document.querySelector("#totalPrice").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
   //소계금액
-  document.querySelector("#babiqGrillTotal").innerText = `${babiqGrillTotal.toLocaleString()}원`;
-  document.querySelector("#pigBabiqTotal").innerText = `${pigBabiqTotal.toLocaleString()}원`;
-  document.querySelector("#haesanBabiqTotal").innerText = `${haesanBabiqTotal.toLocaleString()}원`;
-  document.querySelector("#juiceTotal").innerText = `${juiceTotal.toLocaleString()}원`;
-  document.querySelector("#sojuTotal").innerText = `${sojuTotal.toLocaleString()}원`;
-  document.querySelector("#gajaSetTotal").innerText = `${gajaSetTotal.toLocaleString()}원`;
+  // document.querySelector("#babiqGrillTotal").innerText = `${babiqGrillTotal.toLocaleString()}원`;
+  // document.querySelector("#pigBabiqTotal").innerText = `${pigBabiqTotal.toLocaleString()}원`;
+  // document.querySelector("#haesanBabiqTotal").innerText = `${haesanBabiqTotal.toLocaleString()}원`;
+  // document.querySelector("#juiceTotal").innerText = `${juiceTotal.toLocaleString()}원`;
+  // document.querySelector("#sojuTotal").innerText = `${sojuTotal.toLocaleString()}원`;
+  // document.querySelector("#gajaSetTotal").innerText = `${gajaSetTotal.toLocaleString()}원`;
 }
+
+let res_idx;
 
 //주문 modal 띄우기
 function babiqOrderModal(elem) {
   const positionElem = document.querySelector("#BabiqOrderModal #position");
+  res_idx = elem.parentElement.parentElement.className;
   const position = elem.parentElement.parentElement.id;
   positionElem.innerText = `자리 : ${position}`;
+
   $("#BabiqOrderModal").modal("show");
 }
 //modal 닫고 주문 건수 올리기
-function babiqSubmit() {
+function babiqSubmit(elem) {
+  console.log(elem.classList);
+  $.post("./api/babiq", {
+    res_idx: res_idx,
+    orderArr: orderArr
+  }).done(function (result) {
+    document.querySelector(`#totalOrder${res_idx}`).innerHTML = result;
+  });
   $("#BabiqOrderModal").modal("hide");
   alert("주문이 완료되었습니다.");
-  orderCount++;
-  document.querySelector("#totalOrder").innerHTML = orderCount;
 }
 
 //주문내역보기 Modal
-function babiqOrderCheck() {
+function babiqOrderCheck(elem) {
+  // console.log(elem);  
   $("#babiqOrderCheck").modal("show");
-
+  res_idx = elem.parentElement.parentElement.className;
+  //모달
+  const babiqOrderCheckBody = document.querySelector("#babiqOrderCheck .modal-body");
+  babiqOrderCheckBody.innerHTML = "";
+  $.get(`./api/babiq?res_idx=${res_idx}`).done(function (result) {
+    result.forEach(data=> {
+      const orderArr = JSON.parse(data["orderList"]);
+      const prices = setPrice(orderArr);
+      let elemData = "";
+      elemData += `<div id="${data["babi_idx"]}" class="babiqLists">`;
+      elemData += `<p>바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개 [${prices[0].toLocaleString()}]원</p>`;
+      elemData += `<p>돼지고기 바비큐 세트 : ${orderArr[1]}세트 [${prices[1].toLocaleString()}]원</p>`;
+      elemData += `<p>해산물 바비큐 세트 : ${orderArr[2]}세트 [${prices[2].toLocaleString()}]원</p>`;
+      elemData += `<p>음료 : ${orderArr[3]}병 [${prices[3].toLocaleString()}]원</p>`;
+      elemData += `<p>주류 : ${orderArr[4]}병 [${prices[4].toLocaleString()}]원</p>`;
+      elemData += `<p>과자세트 : ${orderArr[5]}세트 [${prices[5].toLocaleString()}]원</p>`;
+      elemData += `<h6>총 금액 : ${prices[6].toLocaleString()}원</h6>`;
+      elemData += `<span>주문 상태 : ${data["status"]}</span>`
+      if(data["status"] != "취소") {
+        elemData += `<button class="btn btn-primary mypage_btn orderCancell" onclick="babiqCancel(this)">주문 취소</button>`;
+      }
+      elemData += `</div>`;
+    babiqOrderCheckBody.innerHTML += elemData; 
+    });
+  });
+  
   //주문내역보기 갯수 및 가격 띄우기
-  document.querySelector("#babiqCheck").innerText = `바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개`;
-  document.querySelector("#pigBabiqCheck").innerText = `돼지고기 바비큐 세트 : ${orderArr[1]}세트`;
-  document.querySelector("#haesanBabiqCheck").innerText = `해산물 바비큐 세트 : ${orderArr[2]}세트`;
-  document.querySelector("#juiceCheck").innerText = `음료 : ${orderArr[3]}병`;
-  document.querySelector("#sojuCheck").innerText = `주류 : ${orderArr[4]}병`;
-  document.querySelector("#gajaSetCheck").innerText = `과자세트 : ${orderArr[5]}세트`;
-  document.querySelector("#totalPriceCheck").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
+  // document.querySelector("#babiqCheck").innerText = `바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개`;
+  // document.querySelector("#pigBabiqCheck").innerText = `돼지고기 바비큐 세트 : ${orderArr[1]}세트`;
+  // document.querySelector("#haesanBabiqCheck").innerText = `해산물 바비큐 세트 : ${orderArr[2]}세트`;
+  // document.querySelector("#juiceCheck").innerText = `음료 : ${orderArr[3]}병`;
+  // document.querySelector("#sojuCheck").innerText = `주류 : ${orderArr[4]}병`;
+  // document.querySelector("#gajaSetCheck").innerText = `과자세트 : ${orderArr[5]}세트`;
+  // document.querySelector("#totalPriceCheck").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
+}
+
+function babiqCancel(elem) {
+  const babi_idx = elem.parentElement.id;
+  $.post("./api/babiq", {
+    babi_idx: babi_idx,
+    is_deleted: true
+  }).done(function (data){
+    console.log(data);
+    if (data == "취소 되었습니다.") {
+      alert("정상적으로 취소되었습니다.");
+      location.href = "";
+    } else {
+      alert("오류 발생, 취소 안됨");
+    }
+  })
+  console.log(babi_idx)
 }
 
 //예약취소

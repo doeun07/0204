@@ -1,4 +1,13 @@
 <?php
+function getBabiqCount($pdo, $res_idx) {
+  $sql = "SELECT * FROM babiq WHERE res_idx = :res_idx AND status != '취소'";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam("res_idx", $res_idx);
+  $stmt->execute();
+  $babiq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $babiqCount = count($babiq);
+  return $babiqCount;
+}
 if(!isset($_SESSION["user_idx"])) {
   echo "<script>alert('로그인 후 이용하실 수 있습니다.'); location.href = './login';</script>";
 }
@@ -54,13 +63,13 @@ function getYaeyakStatus($status) {
   if ($reservations) {
     foreach ($reservations as $reservation) { 
       $divinnertext = ""; 
-      $divinnertext .= "<tr id='" . $reservation["position"] ."'>"; 
+      $divinnertext .= "<tr id='" . $reservation["position"] ."' class='". $reservation["res_idx"] ."'>"; 
       $divinnertext .= "<td>". getYYYYMMDD($reservation["date"]) ."</td>"; 
       $divinnertext .= "<td> ". $reservation["position"] ."</td>"; 
       $divinnertext .= "<td>". getYaeyakStatus($reservation["status"]) ."</td>"; 
       $divinnertext .= "<td><button onclick='reservationCancell(this)' class='btn btn-primary mypage_btn'>예약 취소</button></td>"; 
       $divinnertext .= "<td><button onclick='babiqOrderModal(this)' class='btn btn-primary mypage_btn'>바비큐 주문하기</button></td>"; 
-      $divinnertext .= "<td id='totalOrder'></td>"; 
+      $divinnertext .= "<td id='totalOrder". $reservation["res_idx"] ."'>".getBabiqCount($pdo, $reservation["res_idx"])."</td>"; 
       $divinnertext .= "<td><button onclick='babiqOrderCheck(this)' class='btn btn-primary mypage_btn'>주문 내역 보기</button></td>"; 
       $divinnertext .= "</tr>";
 
@@ -124,7 +133,7 @@ function getYaeyakStatus($status) {
       <div class="modal-footer">
         <h5 id="totalPrice">총 주문 금액 : 0원</h5>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" onclick="babiqSubmit()">주문하기</button>
+        <button id="babiqOrderBtn" type="button" class="btn btn-primary" onclick="babiqSubmit(this)">주문하기</button>
       </div>
     </div>
   </div>
@@ -140,13 +149,13 @@ function getYaeyakStatus($status) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h6 id="babiqCheck">바비큐 그릴 대여(도구 및 숯 등 포함) : 0개</h6>
+        <!-- <h6 id="babiqCheck">바비큐 그릴 대여(도구 및 숯 등 포함) : 0개</h6>
         <h6 id="pigBabiqCheck">돼지고기 바비큐 세트 : 0세트</h6>
         <h6 id="haesanBabiqCheck">해산물 바비큐 세트 : 0세트</h6>
         <h6 id="juiceCheck">음료 : 0병</h6>
         <h6 id="sojuCheck">주류 : 0병</h6>
         <h6 id="gajaSetCheck">과자세트 : 0세트</h6>
-        <h5 id="totalPriceCheck">총 주문 금액 : 0원</h5>
+        <h5 id="totalPriceCheck">총 주문 금액 : 0원</h5> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>

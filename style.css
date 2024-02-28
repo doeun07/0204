@@ -173,3 +173,11 @@ table, th, td, tr {
 .mypage_btn:hover {
   background-color: rgb(170, 170, 170) !important;
 }
+
+/* BabiqOrderCheckModal */
+.babiqLists{
+  border: 1px solid darkgray;
+  margin: 5px 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
