@@ -60,21 +60,22 @@ $totals = getTotals($reservations);
 ?>
 
 <div id="dateStertAndEnd">
-    <h5 style="display: inline;">조회 기간 선택 : </h5>
+    <h5>조회 기간 선택 : </h5>
     <select name="start" id="start">
     </select>
     <span>~</span>
     <select name="end" id="end">
     </select>
-    <button onclick="yaeyakDateStartAndEndFetchAndPrint()">조회하기</button>
+    <button onclick="yaeyakDateStartAndEndFetchAndPrint()" class='btn btn-primary btn_color' type='submit'>조회하기</button>
+
+    <div id="totals">
+        <ul>
+            <li id="count">총 예약건수 : <?=$totals[0]?>건</li>
+            <li id="price">합계 금액 : <?=number_format($totals[1])?>원</li>
+        </ul>
+    </div>
 </div>
 
-<div id="totals">
-    <ul style="width: 100% list-style: none; float: left; text-align: center; margin: 0 auto;">
-        <li id="count"><?=$totals[0]?>건</li>
-        <li id="price"><?=number_format($totals[1])?>원</li>
-    </ul>
-</div>
 
 <table>
     <tr>
@@ -96,7 +97,7 @@ $totals = getTotals($reservations);
             $divinnertext .= "<td>" . $user["username"] . "</td>";
             $divinnertext .= "<td>" . $user["phone_num"] . "</td>";
             $divinnertext .= "<td>" . getYaeyakStatus($reservation["status"]) . "</td>";
-            $divinnertext .= "<td>" . "<button onclick='yaeyakOk(this)'>승인</button> <button onclick='yaeyakNo(this)'>취소</button>" . "</td>";
+            $divinnertext .= "<td>" . "<button onclick='yaeyakOk(this)' class='btn btn-primary btn_color' type='submit'>승인</button> <button onclick='yaeyakNo(this)' class='btn btn-primary btn_color' type='submit'>취소</button>" . "</td>";
             $divinnertext .= "</tr>";
             echo $divinnertext;
         }

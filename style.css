@@ -190,7 +190,7 @@ table, th, td, tr {
   color: black !important;
 }
 
-.mypage_btn:hover {
+.mypage_btn:hover, .btn_color{
   background-color: rgb(170, 170, 170) !important;
 }
 
@@ -205,4 +205,20 @@ table, th, td, tr {
 #dateStertAndEnd{
   text-align: center;
   margin-bottom: 15px;
+}
+
+/* adminReservation CSS */
+#dateStertAndEnd > h5{
+  display: inline;
+}
+
+#totals > ul{
+  width: 100%;
+  list-style: none;
+  float: left;
+  text-align: center;
+}
+
+.btn_color {
+  border: 0 !important;
 }
