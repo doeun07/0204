@@ -26,10 +26,10 @@
             }
             ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">운영관리</a>
+              <a class="nav-link" href="./admin">운영관리</a>
               <ul class="submenu">
-                <li><a href="#">예약관리</a></li>
-                <li><a href="#">주문관리</a></li>
+                <li><a href="./adminReservation">예약관리</a></li>
+                <li><a href="./adminOrder">주문관리</a></li>
               </ul>
             </li>
           </ul>
