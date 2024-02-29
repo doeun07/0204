@@ -14,11 +14,12 @@ switch ($resource[1]) {
         $includeHeaderAndFooter = true;
         break;
     case 'contents':
-    case 'admin':
-    case 'mypage':
     case 'reservation':
     case 'mypage':
     case 'login':
+    case 'admin':
+    case 'adminReservation':
+    case 'adminOrder':
         $page = "./pages/" . $resource[1] . ".php";
         $includeHeaderAndFooter = true;
         break;
