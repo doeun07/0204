@@ -54,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // const data = reservation[i][`D+${i}`][k]["status"];
                         const dDay = `D+${i}`;
                         const loc_num = reservation[i][dDay][k]["loc_num"];
-                        const status = reservation[i][dDay][k]["status"];
+                        const status = "W";
                         console.log(dDay, loc_num, status);
                         $.post("./data_insert.php", {
                             "dDay" : dDay,
                             "loc_num": loc_num,
                             "status": status
                         });
-                        await sleep(50);
+                        await sleep(20);
                     }
                 }
             }
