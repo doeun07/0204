@@ -18,8 +18,6 @@ switch ($resource[1]) {
     case 'mypage':
     case 'login':
     case 'admin':
-    case 'adminReservation':
-    case 'adminOrder':
         $page = "./pages/" . $resource[1] . ".php";
         $includeHeaderAndFooter = true;
         break;
