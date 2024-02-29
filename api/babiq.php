@@ -10,6 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return 0;
     }
 
+    if (isset($_POST["is_delivery"])) {
+        $babi_idx = $_POST["babi_idx"];
+        $sql = "UPDATE babiq SET status = '배달완료' WHERE babi_idx = :babi_idx";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":babi_idx", $babi_idx);
+        $stmt->execute();
+        echo "배달 되었습니다.";
+        return 0;
+    }
+
     $res_idx = $_POST["res_idx"];
     $orderArr = $_POST["orderArr"];
 

@@ -47,5 +47,5 @@ if ($resource[1] == "api") {
     include($page);
 } else {
     include("./components/render.php");
-}
+} 
 ?>

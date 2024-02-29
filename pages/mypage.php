@@ -96,37 +96,37 @@ function getYaeyakStatus($status) {
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">바비큐 그릴 대여(도구 및 숯 등 포함) (10,000원/개)</span>
           <input id="babiqGrill" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" max="1"
-            min="0" aria-describedby="basic-addon1" oninput="setPrice(this)">
+            min="0" aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="babiqGrillTotal">0원</span>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">돼지고기 바비큐 세트 (12,000원/인)</span>
           <input id="pigBabiq" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" min="0"
-            aria-describedby="basic-addon1" oninput="setPrice(this)">
+            aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="pigBabiqTotal">0원</span>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">해산물 바비큐 세트 (15,000원/인)</span>
           <input id="haesanBabiq" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" min="0"
-            aria-describedby="basic-addon1" oninput="setPrice(this)">
+            aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="haesanBabiqTotal">0원</span>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">음료 (3,000원/병)</span>
           <input id="juice" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" min="0"
-            aria-describedby="basic-addon1" oninput="setPrice(this)">
+            aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="juiceTotal">0원</span>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">주류 (5,000원/병)</span>
           <input id="soju" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" min="0"
-            aria-describedby="basic-addon1" oninput="setPrice(this)">
+            aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="sojuTotal">0원</span>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">과자 세트(3종) (4,000원/세트)</span>
           <input id="gajaSet" type="number" class="form-control" placeholder="개수" aria-label="개수" value="0" min="0"
-            aria-describedby="basic-addon1" oninput="setPrice(this)">
+            aria-describedby="basic-addon1" oninput="updateBabiqTotslPrice(this)">
           <span class="input-group-text" id="gajaSetTotal">0원</span>
         </div>
       </div>
