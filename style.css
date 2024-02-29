@@ -16,7 +16,7 @@ header {
   background-color: white;
 }
 
-.header_menu ul{
+ul, li{
   list-style: none;
 }
 
@@ -32,6 +32,25 @@ header {
 }
 .now {
   font-weight: 900 !important;
+}
+
+/* 드롭 다운 메뉴 CSS*/
+.submenu {
+  display: none;
+  position: absolute;
+}
+
+.menu:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  padding: 10px;
+  display: block;
+}
+
+.submenu li a {
+  color: #000;
 }
   
 /*Footer*/

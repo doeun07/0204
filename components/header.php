@@ -17,7 +17,7 @@
           </li>
         </ul>
         <span>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
             <?php
             if(isset($_SESSION["user_idx"])) {
             echo '<li class="nav-item"><a class="nav-link" href="./logout">로그아웃</a></li>';
@@ -27,6 +27,10 @@
             ?>
             <li class="nav-item">
               <a class="nav-link" href="#">운영관리</a>
+              <ul class="submenu">
+                <li><a href="#">예약관리</a></li>
+                <li><a href="#">주문관리</a></li>
+              </ul>
             </li>
           </ul>
         </span>
