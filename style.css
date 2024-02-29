@@ -47,6 +47,7 @@ ul, li{
 .submenu li {
   padding: 10px;
   display: block;
+  background-color: white;
 }
 
 .submenu li a {
@@ -199,4 +200,9 @@ table, th, td, tr {
   margin: 5px 10px;
   padding: 5px 10px;
   border-radius: 10px;
+}
+
+#dateStertAndEnd{
+  text-align: center;
+  margin-bottom: 15px;
 }

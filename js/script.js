@@ -81,7 +81,9 @@ function reservation() {
     for (let i = 0; i < 14; i++) {
       for (let k = 0; k < 17; k++) {
         const data = reservation[count]["status"];
-        const tdElem = document.querySelector(`#row${k} > td:nth-of-type(${i + 1})`);
+        const tdElem = document.querySelector(
+          `#row${k} > td:nth-of-type(${i + 1})`
+        );
         console.log(data);
 
         if (data == "W") {
@@ -109,11 +111,10 @@ function reservation() {
   // 최초 접속 시 updateReservation을 즉시 호출하여 페이지를 렌더링
   updateReservation();
   //천단위 구분기호
-
 }
 
 let dDay = "";
-let position ="";
+let position = "";
 let price = "";
 
 //예약 modal 띄우기
@@ -122,12 +123,12 @@ function yaeyak() {
   dDay = this.classList[1];
 
   const rowValue = this.classList[2];
-  if(rowValue <= 6) {
-    position = "A" +  ("0" +(Number(rowValue) + 1)).slice(-2);
+  if (rowValue <= 6) {
+    position = "A" + ("0" + (Number(rowValue) + 1)).slice(-2);
   } else {
     position = "T" + ("0" + (Number(rowValue) - 6)).slice(-2);
   }
-  
+
   // console.log(position);
   document.querySelector("#position").innerText = `자리 : ${position}`;
   $("#exampleModalLive").modal("show");
@@ -135,14 +136,14 @@ function yaeyak() {
   //아이디가 this.classList[1]인 Elem의 class 값을 가져와서 week 변수에 저장
   const week = document.getElementById(`${this.classList[1]}`).className;
   //주말, 평일 / A, T 영역 구분
-  if(week !=""){
-    if(position.includes("A")) {
+  if (week != "") {
+    if (position.includes("A")) {
       price = 30000;
-    } else{
+    } else {
       price = 20000;
     }
   } else {
-    if(position.includes("A")) {
+    if (position.includes("A")) {
       price = 25000;
     } else {
       price = 15000;
@@ -150,27 +151,31 @@ function yaeyak() {
   }
   //toLocaleString => 금액 천 단위 구분 기호(,)
   document.querySelector("#position").innerText = `날짜 : ${position}`;
-  document.querySelector("#price").innerText = `금액 : ${price.toLocaleString()}원`;
+  document.querySelector(
+    "#price"
+  ).innerText = `금액 : ${price.toLocaleString()}원`;
 
   $("#exampleModalLive").modal("show");
 }
 
 function noyaeyak() {
-  alert("예약하실 수 없습니다.")
+  alert("예약하실 수 없습니다.");
 }
 
 // 휴대폰번호 정규표현식으로 3-4-4 만들기
 const regexPhonNumber = (target) => {
-  target.value = target.value.replace(/[^0-9]/g, "").replace(/^(\d{3})(\d{4})(\d{4})/, `$1-$2-$3`);
-}
+  target.value = target.value
+    .replace(/[^0-9]/g, "")
+    .replace(/^(\d{3})(\d{4})(\d{4})/, `$1-$2-$3`);
+};
 // 인증번호 정규표현식
 const regexVerifyNumber = (target) => {
   target.value = target.value.replace(/[^0-9]/g, "");
-}
+};
 
 //인증번호 칸 활성화 조건
 function sendVerifyNumber() {
-  if(document.querySelector("#phoneNumber").value.length == 13) {
+  if (document.querySelector("#phoneNumber").value.length == 13) {
     document.querySelector("#phoneVerify").disabled = false;
   } else {
     alert("휴대폰 번호를 확인해 주세요");
@@ -183,31 +188,31 @@ function reservationSubmit() {
   const phoneNumber = document.querySelector("#phoneNumber").value;
   const phoneVerify = document.querySelector("#phoneVerify").value;
 
-  if(!name) {
-    return alert("이름을 확인하여 주시기 바랍니다.")
+  if (!name) {
+    return alert("이름을 확인하여 주시기 바랍니다.");
   }
-  if(phoneNumber.length != 13) {
-    return alert("전화번호를 확인하여 주시기 바랍니다.")
+  if (phoneNumber.length != 13) {
+    return alert("전화번호를 확인하여 주시기 바랍니다.");
   }
-  if(phoneVerify != "1234") {
-    return alert("인증번호를 확인하여 주시기 바랍니다.")
+  if (phoneVerify != "1234") {
+    return alert("인증번호를 확인하여 주시기 바랍니다.");
   }
   // 관리자 번호 사용 불가
-  if(phoneNumber == "000-0000-0000") {
-    return alert("이 전화번호를 사용하실 수 없습니다.")
+  if (phoneNumber == "000-0000-0000") {
+    return alert("이 전화번호를 사용하실 수 없습니다.");
   }
 
   $("#exampleModalLive").modal("hide");
   // 예약 정보 넘기기
   $.post("./api/createReservation", {
-    "username" : name,
-    "phone_num" : phoneNumber,
-    "position": position,
-    "date": dDay,
-    "price": price
+    username: name,
+    phone_num: phoneNumber,
+    position: position,
+    date: dDay,
+    price: price,
     // 중복 예약 불가
-  }).done(function(data){
-    if(data == "정상적으로 등록되었습니다.") {
+  }).done(function (data) {
+    if (data == "정상적으로 등록되었습니다.") {
       showToast();
     } else {
       alert(data);
@@ -217,8 +222,8 @@ function reservationSubmit() {
 
 //Toast 띄우기
 function showToast() {
-  const toastLiveExample = document.getElementById('liveToast')
-  const toast = new bootstrap.Toast(toastLiveExample)
+  const toastLiveExample = document.getElementById("liveToast");
+  const toast = new bootstrap.Toast(toastLiveExample);
   toast.show();
 }
 
@@ -254,7 +259,7 @@ function setPrice(orderArr) {
   //   case 'gajaSet':
   //     orderArr[5] = product.value;
   //     break;
-  // } 
+  // }
 
   const babiqGrillTotal = babiqGrillPrice * orderArr[0];
   const pigBabiqTotal = pigBabiqPrice * orderArr[1];
@@ -262,8 +267,22 @@ function setPrice(orderArr) {
   const juiceTotal = juicePrice * orderArr[3];
   const sojuTotal = sojuPrice * orderArr[4];
   const gajaSetTotal = gajaSetPrice * orderArr[5];
-  const totalPrice = babiqGrillTotal + pigBabiqTotal + haesanBabiqTotal + juiceTotal + sojuTotal + gajaSetTotal;
-  return [babiqGrillTotal, pigBabiqTotal, haesanBabiqTotal, juiceTotal, sojuTotal, gajaSetTotal, totalPrice];
+  const totalPrice =
+    babiqGrillTotal +
+    pigBabiqTotal +
+    haesanBabiqTotal +
+    juiceTotal +
+    sojuTotal +
+    gajaSetTotal;
+  return [
+    babiqGrillTotal,
+    pigBabiqTotal,
+    haesanBabiqTotal,
+    juiceTotal,
+    sojuTotal,
+    gajaSetTotal,
+    totalPrice,
+  ];
   // document.querySelector("#totalPrice").innerText = `총 주문 금액 : ${totalPrice.toLocaleString()}원`;
   //소계금액
   // document.querySelector("#babiqGrillTotal").innerText = `${babiqGrillTotal.toLocaleString()}원`;
@@ -290,7 +309,7 @@ function babiqSubmit(elem) {
   console.log(elem.classList);
   $.post("./api/babiq", {
     res_idx: res_idx,
-    orderArr: orderArr
+    orderArr: orderArr,
   }).done(function (result) {
     document.querySelector(`#totalOrder${res_idx}`).innerHTML = result;
   });
@@ -300,34 +319,48 @@ function babiqSubmit(elem) {
 
 //주문내역보기 Modal
 function babiqOrderCheck(elem) {
-  // console.log(elem);  
+  // console.log(elem);
   $("#babiqOrderCheck").modal("show");
   res_idx = elem.parentElement.parentElement.className;
   //모달
-  const babiqOrderCheckBody = document.querySelector("#babiqOrderCheck .modal-body");
+  const babiqOrderCheckBody = document.querySelector(
+    "#babiqOrderCheck .modal-body"
+  );
   babiqOrderCheckBody.innerHTML = "";
   $.get(`./api/babiq?res_idx=${res_idx}`).done(function (result) {
-    result.forEach(data=> {
+    result.forEach((data) => {
       const orderArr = JSON.parse(data["orderList"]);
       const prices = setPrice(orderArr);
       let elemData = "";
       elemData += `<div id="${data["babi_idx"]}" class="babiqLists">`;
-      elemData += `<p>바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개 [${prices[0].toLocaleString()}]원</p>`;
-      elemData += `<p>돼지고기 바비큐 세트 : ${orderArr[1]}세트 [${prices[1].toLocaleString()}]원</p>`;
-      elemData += `<p>해산물 바비큐 세트 : ${orderArr[2]}세트 [${prices[2].toLocaleString()}]원</p>`;
-      elemData += `<p>음료 : ${orderArr[3]}병 [${prices[3].toLocaleString()}]원</p>`;
-      elemData += `<p>주류 : ${orderArr[4]}병 [${prices[4].toLocaleString()}]원</p>`;
-      elemData += `<p>과자세트 : ${orderArr[5]}세트 [${prices[5].toLocaleString()}]원</p>`;
+      elemData += `<p>바비큐 그릴 대여(도구 및 숯 등 포함) : ${
+        orderArr[0]
+      }개 [${prices[0].toLocaleString()}]원</p>`;
+      elemData += `<p>돼지고기 바비큐 세트 : ${
+        orderArr[1]
+      }세트 [${prices[1].toLocaleString()}]원</p>`;
+      elemData += `<p>해산물 바비큐 세트 : ${
+        orderArr[2]
+      }세트 [${prices[2].toLocaleString()}]원</p>`;
+      elemData += `<p>음료 : ${
+        orderArr[3]
+      }병 [${prices[3].toLocaleString()}]원</p>`;
+      elemData += `<p>주류 : ${
+        orderArr[4]
+      }병 [${prices[4].toLocaleString()}]원</p>`;
+      elemData += `<p>과자세트 : ${
+        orderArr[5]
+      }세트 [${prices[5].toLocaleString()}]원</p>`;
       elemData += `<h6>총 금액 : ${prices[6].toLocaleString()}원</h6>`;
-      elemData += `<span>주문 상태 : ${data["status"]}</span>`
-      if(data["status"] != "취소") {
+      elemData += `<span>주문 상태 : ${data["status"]}</span>`;
+      if (data["status"] != "취소") {
         elemData += `<button class="btn btn-primary mypage_btn orderCancell" onclick="babiqCancel(this)">주문 취소</button>`;
       }
       elemData += `</div>`;
-    babiqOrderCheckBody.innerHTML += elemData; 
+      babiqOrderCheckBody.innerHTML += elemData;
     });
   });
-  
+
   //주문내역보기 갯수 및 가격 띄우기
   // document.querySelector("#babiqCheck").innerText = `바비큐 그릴 대여(도구 및 숯 등 포함) : ${orderArr[0]}개`;
   // document.querySelector("#pigBabiqCheck").innerText = `돼지고기 바비큐 세트 : ${orderArr[1]}세트`;
@@ -342,8 +375,8 @@ function babiqCancel(elem) {
   const babi_idx = elem.parentElement.id;
   $.post("./api/babiq", {
     babi_idx: babi_idx,
-    is_deleted: true
-  }).done(function (data){
+    is_deleted: true,
+  }).done(function (data) {
     console.log(data);
     if (data == "취소 되었습니다.") {
       alert("정상적으로 취소되었습니다.");
@@ -351,19 +384,97 @@ function babiqCancel(elem) {
     } else {
       alert("오류 발생, 취소 안됨");
     }
-  })
-  console.log(babi_idx)
+  });
+  console.log(babi_idx);
 }
 
 //예약취소
 function reservationCancell(jari) {
   const trElem = jari.parentElement.parentElement;
-  const position = trElem.getElementsByTagName('td')[1].innerText;
-  const cancell = prompt(`${position} 자리의 예약을 취소하시려면 '예'를 입력해주세요.`);
-  if(cancell == "예") {
-    trElem.innerHTML = ""
+  const position = trElem.getElementsByTagName("td")[1].innerText;
+  const cancell = prompt(
+    `${position} 자리의 예약을 취소하시려면 '예'를 입력해주세요.`
+  );
+  if (cancell == "예") {
+    trElem.innerHTML = "";
     alert("예약이 취소되었습니다.");
   } else {
     alert("예약 취소 실패");
+  }
+}
+
+//관리자 페이지 예약 승인 및 취소 함수
+function yaeyakOk(elem) {
+  const res_idx = elem.parentElement.parentElement.className;
+  $.post("./api/admin", {
+    command: "yaeyakOk",
+    res_idx: res_idx,
+  }).done(function (result) {
+    if (result == "예약 승인되었습니다.") {
+      alert(result);
+      location.href = "";
+    } else {
+      alert(result);
+    }
+  });
+}
+
+function yaeyakNo(elem) {
+  const res_idx = elem.parentElement.parentElement.className;
+  $.post("./api/admin", {
+    command: "yaeyakNo",
+    res_idx: res_idx,
+  }).done(function (result) {
+    if (result == "예약 취소되었습니다.") {
+      alert(result);
+      location.href = "";
+    } else {
+      alert(result);
+    }
+  });
+}
+
+function yaeyakDateStartAndEndFetchAndPrint() {
+  const startDate = document.querySelector("#start").value;
+  const endDate = document.querySelector("#end").value;
+  location.href = `./admin?reservation&start=${startDate}&end=${endDate}`
+  console.log(startDate, endDate);
+}
+
+function setupyaeyakDateStartAndEnd() {
+  const startElem = document.querySelector("#start");
+  const endElem = document.querySelector("#end");
+  //startElem 영역
+  let date = new Date();
+  for (let i = 0; i < 14; i++) {
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    startElem.innerHTML += `<option id="start${i}" value="${i}">${year}-${month}-${day}</option>`;
+    date.setDate(date.getDate() + 1);
+  }
+
+  //endElem 영역
+  date = new Date();
+  for (let i = 0; i < 13; i++) {
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    endElem.innerHTML += `<option id="end${i}" value="${i}">${year}-${month}-${day}</option>`;
+    date.setDate(date.getDate() + 1);
+  }
+  const year = date.getFullYear();
+  const month = ("0" + (date.getMonth() + 1)).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  endElem.innerHTML += `<option id="end13" value="13" selected>${year}-${month}-${day}</option>`;
+
+  const url = new URLSearchParams(window.location.search);
+  if (url.get("start")) {
+    const start = url.get("start");
+    const end = url.get("end");
+    const startSelectElem = document.querySelector(`#start${start}`);
+    const endSelectElem = document.querySelector(`#end${end}`);
+    startSelectElem.selected = true;
+    endSelectElem.selected = true;
   }
 }

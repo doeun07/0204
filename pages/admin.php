@@ -10,4 +10,7 @@ if (isset($_SESSION["user_idx"])) {
         location.href = './login'
         </script>";
 }
+
+
+isset($_GET["reservation"]) ? include("./pages/adminReservation.php") : include("./pages/adminOrder.php");
 ?>
